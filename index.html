@@ -2,79 +2,106 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Lecteur Audio Moderne</title>
+  <title>🎧 Lecteur Audio Catégorisé</title>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
   <style>
-    body {
+    * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
+    }
+
+    body {
       font-family: 'Orbitron', sans-serif;
-      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-      color: #ffffff;
+      background: radial-gradient(ellipse at center, #1a1a1a 0%, #0f0f0f 100%);
+      color: white;
       display: flex;
       flex-direction: column;
       align-items: center;
+      padding: 40px 20px;
       min-height: 100vh;
-      justify-content: center;
     }
 
     h1 {
-      font-size: 2.5em;
+      font-size: 2.8em;
       margin-bottom: 30px;
-      text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff;
+      color: #00f0ff;
+      text-shadow: 0 0 15px #00f0ff, 0 0 40px #00f0ff;
     }
 
-    .player-container {
-      display: flex;
-      flex-direction: column;
-      gap: 30px;
-      width: 90%;
-      max-width: 600px;
-      padding: 40px;
+    .category {
+      width: 100%;
+      max-width: 800px;
+      margin-bottom: 40px;
+      padding: 20px;
       background: rgba(255, 255, 255, 0.05);
-      border-radius: 20px;
-      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.3);
-      backdrop-filter: blur(10px);
       border: 1px solid rgba(255, 255, 255, 0.1);
-      transform: perspective(1000px) rotateX(2deg);
+      border-radius: 20px;
+      box-shadow: 0 8px 32px rgba(0, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    .category h2 {
+      font-size: 1.6em;
+      margin-bottom: 15px;
+      color: #0ff;
+      border-left: 5px solid #0ff;
+      padding-left: 10px;
+      text-shadow: 0 0 5px #0ff;
+    }
+
+    .audio-item {
+      margin: 10px 0;
+      padding: 10px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      box-shadow: 0 0 8px #00ffff30;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .audio-item:hover {
+      transform: scale(1.02);
+      box-shadow: 0 0 15px #00ffffaa;
     }
 
     audio {
       width: 100%;
-      filter: drop-shadow(0 0 5px #00ffff);
     }
 
-    audio::-webkit-media-controls-panel {
-      background-color: #111;
-      border-radius: 10px;
-    }
-
-    .neon-button {
-      margin-top: 20px;
-      padding: 12px 30px;
-      font-size: 1.2em;
-      color: #fff;
-      background: transparent;
-      border: 2px solid #00ffff;
-      border-radius: 10px;
+    .glow-btn {
+      margin-top: 30px;
+      padding: 12px 40px;
+      font-size: 1em;
+      color: white;
+      background: #111;
+      border: 2px solid #0ff;
+      border-radius: 12px;
       text-transform: uppercase;
       cursor: pointer;
-      box-shadow: 0 0 5px #00ffff, 0 0 10px #00ffff, 0 0 15px #00ffff;
-      transition: all 0.3s ease;
+      box-shadow: 0 0 10px #0ff, 0 0 30px #0ff;
+      transition: all 0.4s ease;
     }
 
-    .neon-button:hover {
-      background: #00ffff;
+    .glow-btn:hover {
+      background: #0ff;
       color: #000;
-      box-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 30px #00ffff;
       transform: scale(1.05);
+      box-shadow: 0 0 15px #0ff, 0 0 40px #0ff;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     @media (max-width: 600px) {
-      .player-container {
-        padding: 20px;
-      }
-
       h1 {
         font-size: 2em;
       }
@@ -83,26 +110,46 @@
 </head>
 <body>
 
-  <h1>🎶 Mon Lecteur Audio Stylé</h1>
+  <h1>🎧 Lecteur Audio</h1>
 
-  <div class="player-container">
-    <audio controls>
-      <source src="Ultras Fanatic Reds - La Banda Loca _ زيدي كاس(MP3_160K).mp3" type="audio/mpeg">
-      Ton navigateur ne supporte pas l'audio HTML5.
-    </audio>
-
-    <audio controls>
-      <source src="aaz.mp3" type="audio/mpeg">
-      Ton navigateur ne supporte pas l'audio HTML5.
-    </audio>
-
-    <audio controls>
-      <source src="Pal Pal Mashup _ Afusic x Talha Anjum Ft. Talwiinder _ Naresh Parmar(MP3_160K).mp3" type="audio/mpeg">
-      Ton navigateur ne supporte pas l'audio HTML5.
-    </audio>
-
-    <button class="neon-button" onclick="alert('Bientôt plus de fonctionnalités !')">🎧 Plus de sons</button>
+  <!-- Catégorie : Remix -->
+  <div class="category">
+    <h2>🔥 Indian</h2>
+    <div class="audio-item">
+      <audio controls>
+        <source src="Pal Pal Mashup _ Afusic x Talha Anjum Ft. Talwiinder _ Naresh Parmar(MP3_160K).mp3" type="audio/mpeg">
+        Navigateur non compatible.
+      </audio>
+      <audio controls>
+        <source src="aaz.mp3" type="audio/mpeg">
+        Navigateur non compatible.
+      </audio>
+    </div>
   </div>
+
+  <!-- Catégorie : Ultras -->
+  <div class="category">
+    <h2>🏟 Ultras</h2>
+    <div class="audio-item">
+      <audio controls>
+        <source src="Ultras Fanatic Reds - La Banda Loca _ زيدي كاس(MP3_160K).mp3" type="audio/mpeg">
+        Navigateur non compatible.
+      </audio>
+    </div>
+  </div>
+
+  <!-- Catégorie : Chaâbi -->
+  <div class="category">
+    <h2>🎤 Chaâbi</h2>
+    <div class="audio-item">
+      <audio controls>
+        <source src="------" type="audio/mpeg">
+        Navigateur non compatible.
+      </audio>
+    </div>
+  </div>
+
+  <button class="glow-btn" onclick="alert('Plus de sons à venir !')">➕ Ajouter une piste</button>
 
 </body>
 </html>
