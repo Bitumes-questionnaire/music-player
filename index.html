@@ -2,38 +2,76 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>🎧 Lecteur Audio Catégorisé</title>
+  <title>Lecteur Audio Catégorisé</title>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
   <style>
     * {
       box-sizing: border-box;
-      margin: 0;
-      padding: 0;
     }
 
     body {
       font-family: 'Orbitron', sans-serif;
-      background: radial-gradient(ellipse at center, #1a1a1a 0%, #0f0f0f 100%);
+      background: linear-gradient(135deg, #0f0f0f, #1f1f1f);
       color: white;
+      margin: 0;
+      padding: 40px 20px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 40px 20px;
       min-height: 100vh;
+      overflow-x: hidden;
     }
 
     h1 {
       font-size: 2.8em;
-      margin-bottom: 30px;
-      color: #00f0ff;
-      text-shadow: 0 0 15px #00f0ff, 0 0 40px #00f0ff;
+      margin-bottom: 20px;
+      color: #0ff;
+      text-shadow: 0 0 10px #0ff, 0 0 30px #0ff;
     }
 
+    /* ----------- ROTATING FILTER ---------- */
+    .filter-container {
+      perspective: 1000px;
+      margin-bottom: 40px;
+    }
+
+    .filter-3d {
+      display: flex;
+      justify-content: center;
+      transform-style: preserve-3d;
+      animation: rotate 15s infinite linear;
+    }
+
+    .filter-button {
+      margin: 0 15px;
+      padding: 12px 20px;
+      background: #111;
+      border: 2px solid #0ff;
+      border-radius: 12px;
+      color: white;
+      text-transform: uppercase;
+      box-shadow: 0 0 10px #0ff, 0 0 30px #0ff;
+      cursor: pointer;
+      transition: all 0.4s ease;
+    }
+
+    .filter-button:hover {
+      background: #0ff;
+      color: #000;
+      transform: scale(1.1);
+    }
+
+    @keyframes rotate {
+      0% { transform: rotateY(0deg); }
+      100% { transform: rotateY(360deg); }
+    }
+
+    /* ----------- CATÉGORIES ----------- */
     .category {
       width: 100%;
       max-width: 800px;
-      margin-bottom: 40px;
-      padding: 20px;
+      margin: 30px 0;
+      padding: 25px;
       background: rgba(255, 255, 255, 0.05);
       border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 20px;
@@ -52,11 +90,11 @@
     }
 
     .audio-item {
-      margin: 10px 0;
-      padding: 10px;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 12px;
-      box-shadow: 0 0 8px #00ffff30;
+      margin: 20px 0;
+      background: rgba(0, 255, 255, 0.08);
+      padding: 15px;
+      border-radius: 15px;
+      box-shadow: 0 0 10px #00ffff30;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
@@ -65,64 +103,51 @@
       box-shadow: 0 0 15px #00ffffaa;
     }
 
+    .track-name {
+      font-size: 1em;
+      margin-bottom: 8px;
+      color: #ffffff;
+      text-align: left;
+    }
+
     audio {
       width: 100%;
-    }
-
-    .glow-btn {
-      margin-top: 30px;
-      padding: 12px 40px;
-      font-size: 1em;
-      color: white;
-      background: #111;
-      border: 2px solid #0ff;
-      border-radius: 12px;
-      text-transform: uppercase;
-      cursor: pointer;
-      box-shadow: 0 0 10px #0ff, 0 0 30px #0ff;
-      transition: all 0.4s ease;
-    }
-
-    .glow-btn:hover {
-      background: #0ff;
-      color: #000;
-      transform: scale(1.05);
-      box-shadow: 0 0 15px #0ff, 0 0 40px #0ff;
+      border-radius: 10px;
     }
 
     @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     @media (max-width: 600px) {
-      h1 {
-        font-size: 2em;
-      }
+      h1 { font-size: 2em; }
+      .filter-3d { flex-direction: column; animation: none; }
+      .filter-button { margin: 10px 0; }
     }
   </style>
 </head>
 <body>
 
-  <h1>🎧 Lecteur Audio</h1>
+  <h1>🎧 Mon Lecteur Audio</h1>
+
+  <!-- FILTRE ROTATIF 3D -->
+  <div class="filter-container">
+    <div class="filter-3d">
+      <button class="filter-button">🔥 Remix</button>
+      <button class="filter-button">🏟 Ultras</button>
+      <button class="filter-button">🎤 Chaâbi</button>
+    </div>
+  </div>
 
   <!-- Catégorie : Remix -->
   <div class="category">
-    <h2>🔥 Indian</h2>
+    <h2>🔥 Remix</h2>
     <div class="audio-item">
+      <div class="track-name">Pal Pal Mashup – Afusic x Talha Anjum Ft. Talwiinder</div>
       <audio controls>
         <source src="Pal Pal Mashup _ Afusic x Talha Anjum Ft. Talwiinder _ Naresh Parmar(MP3_160K).mp3" type="audio/mpeg">
-        Navigateur non compatible.
-      </audio>
-      <audio controls>
-        <source src="aaz.mp3" type="audio/mpeg">
-        Navigateur non compatible.
+        Ton navigateur ne supporte pas l'audio HTML5.
       </audio>
     </div>
   </div>
@@ -131,9 +156,10 @@
   <div class="category">
     <h2>🏟 Ultras</h2>
     <div class="audio-item">
+      <div class="track-name">Ultras Fanatic Reds – La Banda Loca زيدي كاس</div>
       <audio controls>
         <source src="Ultras Fanatic Reds - La Banda Loca _ زيدي كاس(MP3_160K).mp3" type="audio/mpeg">
-        Navigateur non compatible.
+        Ton navigateur ne supporte pas l'audio HTML5.
       </audio>
     </div>
   </div>
@@ -142,14 +168,13 @@
   <div class="category">
     <h2>🎤 Chaâbi</h2>
     <div class="audio-item">
+      <div class="track-name">Chanson Chaâbi – aaz.mp3</div>
       <audio controls>
-        <source src="------" type="audio/mpeg">
-        Navigateur non compatible.
+        <source src="aaz.mp3" type="audio/mpeg">
+        Ton navigateur ne supporte pas l'audio HTML5.
       </audio>
     </div>
   </div>
-
-  <button class="glow-btn" onclick="alert('Plus de sons à venir !')">➕ Ajouter une piste</button>
 
 </body>
 </html>
