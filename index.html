@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>🎧 Audio Player Intelligent</title>
+  <title>🎧 Lecteur Audio Catégorisé</title>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
   <style>
     body {
@@ -54,6 +54,20 @@
       padding: 20px;
       background: #111;
       border-right: 1px solid #0ff4;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .sidebar img {
+      width: 100%;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .sidebar img:hover {
+      transform: scale(1.05);
     }
 
     .content {
@@ -94,11 +108,11 @@
     }
 
     .cover {
-      width: 70px;
-      height: 70px;
-      object-fit: cover;
+      width: 60px;
+      height: 60px;
+      object-fit: contain;
       border-radius: 8px;
-      border: 2px solid #0ff;
+      background: #000;
     }
 
     .info {
@@ -144,6 +158,8 @@
 
       .sidebar {
         width: 100%;
+        flex-direction: row;
+        justify-content: center;
         border-right: none;
         border-bottom: 1px solid #0ff3;
       }
@@ -167,12 +183,9 @@
 
 <div class="main">
   <div class="sidebar">
-    <h3>Catégories</h3>
-    <ul>
-      <li><button onclick="filterCategory('remix')">Remix</button></li>
-      <li><button onclick="filterCategory('ultras')">Ultras</button></li>
-      <li><button onclick="filterCategory('chaabi')">Chaâbi</button></li>
-    </ul>
+    <img src="covers/remix.jpg" alt="Remix" onclick="filterCategory('remix')">
+    <img src="covers/ultras.jpg" alt="Ultras" onclick="filterCategory('ultras')">
+    <img src="covers/chaabi.jpg" alt="Chaâbi" onclick="filterCategory('chaabi')">
   </div>
 
   <div class="content">
@@ -180,7 +193,7 @@
       <input type="text" id="search" placeholder="🔍 Rechercher une musique..." oninput="searchMusic(this.value)">
     </div>
     <div id="music-list">
-      <!-- Les pistes seront insérées ici par JS -->
+      <!-- Musiques générées ici -->
     </div>
   </div>
 </div>
@@ -198,23 +211,20 @@
     {
       category: 'remix',
       title: 'Pal Pal Mashup – Afusic',
-      desc: 'Un remix moderne combinant classiques Bollywood et trap asiatique.',
-      src: 'Pal Pal Mashup _ Afusic x Talha Anjum Ft. Talwiinder _ Naresh Parmar(MP3_160K).mp3',
-      cover: 'https://i1.sndcdn.com/artworks-000208777820-kgtgrf-t500x500.jpg'
+      desc: 'Un remix moderne combinant Bollywood et Trap asiatique.',
+      src: 'musics/Pal Pal Mashup.mp3'
     },
     {
       category: 'ultras',
       title: 'La Banda Loca – Ultras Fanatic Reds',
-      desc: 'Chant de stade énergique des fans algériens',
-      src: 'Ultras Fanatic Reds - La Banda Loca _ زيدي كاس(MP3_160K).mp3',
-      cover: 'https://i1.sndcdn.com/artworks-000137166221-uvuqrr-t500x500.jpg'
+      desc: 'Chant énergique des stades algériens.',
+      src: 'musics/Ultras Fanatic Reds - La Banda Loca _ زيدي كاس(MP3_160K).mp3'
     },
     {
       category: 'chaabi',
       title: 'Chaâbi Traditionnel – AAZ',
-      desc: 'Un air traditionnel du patrimoine populaire algérien',
-      src: 'aaz.mp3',
-      cover: 'https://cdn-icons-png.flaticon.com/512/727/727245.png'
+      desc: 'Morceau classique du répertoire chaâbi algérien.',
+      src: 'musics/aaz.mp3'
     }
   ];
 
@@ -230,7 +240,7 @@
       const el = document.createElement('div');
       el.className = 'track';
       el.innerHTML = `
-        <img class="cover" src="${t.cover}" alt="cover">
+        <img class="cover" src="https://cdn-icons-png.flaticon.com/512/727/727245.png" alt="icon music">
         <div class="info">
           <div class="title">${t.title}</div>
           <div class="desc">${t.desc}</div>
@@ -261,7 +271,6 @@
     });
   }
 
-  // Charger par défaut la catégorie remix
   window.onload = () => filterCategory('remix');
 </script>
 
