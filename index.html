@@ -164,5 +164,22 @@
     }
   </script>
 
+  <script>
+  // Récupérer toutes les balises audio
+  const allAudio = document.querySelectorAll('audio');
+
+  allAudio.forEach(audio => {
+    audio.addEventListener('play', () => {
+      // Lorsqu'une se lance, on stoppe les autres
+      allAudio.forEach(other => {
+        if (other !== audio) {
+          other.pause();
+          other.currentTime = 0; // Remet à 0 pour éviter qu'elle continue à charger
+        }
+      });
+    });
+  });
+</script>
+
 </body>
 </html>
