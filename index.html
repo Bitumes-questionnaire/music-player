@@ -2,162 +2,37 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>🎧 Audio Player Intelligent</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
+  <title>🎧 Lecteur Audio Complet</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
   <style>
-    body {
-      margin: 0;
-      font-family: 'Orbitron', sans-serif;
-      background: #0f0f0f;
-      color: #fff;
-    }
-
-    header {
-      text-align: center;
-      padding: 30px 20px;
-      color: #0ff;
-      text-shadow: 0 0 10px #0ff, 0 0 30px #0ff;
-    }
-
-    .filters {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      margin-bottom: 20px;
-      flex-wrap: wrap;
-    }
-
-    .filter-button {
-      padding: 10px 20px;
-      background: transparent;
-      border: 2px solid #0ff;
-      color: #fff;
-      border-radius: 10px;
-      cursor: pointer;
-      box-shadow: 0 0 10px #0ff;
-      transition: 0.3s;
-    }
-
-    .filter-button:hover,
-    .filter-button.active {
-      background-color: #0ff;
-      color: #000;
-    }
-
-    .main {
-      display: flex;
-      height: calc(100vh - 220px);
-    }
-
-    .sidebar {
-      width: 200px;
-      padding: 20px;
-      background: #111;
-      border-right: 1px solid #0ff4;
-    }
-
-    .content {
-      flex: 1;
-      padding: 20px;
-      overflow-y: auto;
-    }
-
-    .search-box {
-      margin-bottom: 20px;
-    }
-
-    .search-box input {
-      width: 100%;
-      padding: 10px;
-      border-radius: 8px;
-      border: none;
-      outline: none;
-      background: #222;
-      color: #0ff;
-    }
-
-    .track {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-      background: #1a1a1a;
-      border: 1px solid #0ff3;
-      border-radius: 12px;
-      padding: 15px;
-      margin-bottom: 15px;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-
-    .track:hover {
-      background: #0ff2;
-    }
-
-    .cover {
-      width: 70px;
-      height: 70px;
-      object-fit: cover;
-      border-radius: 8px;
-      border: 2px solid #0ff;
-    }
-
-    .info {
-      flex: 1;
-    }
-
-    .info .title {
-      font-size: 1em;
-      font-weight: bold;
-    }
-
-    .info .desc {
-      font-size: 0.85em;
-      opacity: 0.7;
-    }
-
-    footer {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: #000;
-      border-top: 2px solid #0ff;
-      padding: 10px 20px;
-      display: flex;
-      align-items: center;
-      gap: 20px;
-      z-index: 1000;
-    }
-
-    footer .now-playing {
-      flex: 1;
-    }
-
-    footer audio {
-      width: 300px;
-    }
-
-    @media (max-width: 768px) {
-      .main {
-        flex-direction: column;
-      }
-
-      .sidebar {
-        width: 100%;
-        border-right: none;
-        border-bottom: 1px solid #0ff3;
-      }
-
-      footer audio {
-        width: 100%;
-      }
-    }
+    body { font-family:'Roboto',sans-serif; margin:0; background:#0f0f0f; color:#fff; }
+    header { text-align:center; padding:20px; }
+    .filters { display:flex; justify-content:center; gap:20px; margin-bottom:10px; }
+    .filter-button { padding:10px 20px; border:2px solid #0ff;border-radius:8px; background:transparent; color:#fff; cursor:pointer; }
+    .filter-button.active, .filter-button:hover { background:#0ff; color:#000; }
+    .main { display:flex; height:calc(100vh - 240px); }
+    .sidebar { width:200px; background:#111; padding:20px; text-align:center; }
+    .sidebar .cover-cat { width:100%; border-radius:8px; margin-bottom:20px; }
+    .content { flex:1; padding:20px; overflow-y:auto; }
+    .search-box input { width:100%; padding:10px;border-radius:6px;border:none;background:#222;color:#0ff; }
+    .track { display:flex; gap:15px; background:#1a1a1a; padding:10px; border-radius:8px; cursor:pointer; transition:0.3s; }
+    .track:hover { background:#2a2a2a; }
+    .track .cover { width:60px;height:60px;border-radius:6px;object-fit:cover; }
+    .track .info { flex:1; }
+    .track .info .title { font-size:1em; font-weight:500; }
+    .track .info .desc { font-size:0.9em; opacity:0.7; }
+    footer { position:fixed; bottom:0; width:100%; background:#000; border-top:2px solid #0ff; padding:10px; display:flex; align-items:center; gap:20px; z-index:10; }
+    footer .now-playing { flex:1; }
+    footer audio { width:300px; }
+    footer .btn-download { background:#0ff;color:#000;border:none;padding:8px 12px;border-radius:6px;cursor:pointer;text-decoration:none;}
+    #visualizer { width:100%; height:100px; background:#000; display:block; margin-top:10px; }
+    @media(max-width:768px){ .main{flex-direction:column;} .sidebar{width:100%;} footer audio{width:100%;} }
   </style>
 </head>
 <body>
 
 <header>
-  <h1>🎧 Mon Lecteur Audio Intelligent</h1>
+  <h1>🎧 Lecteur Audio Complet</h1>
   <div class="filters">
     <button class="filter-button active" onclick="filterCategory('remix')">Remix</button>
     <button class="filter-button" onclick="filterCategory('ultras')">Ultras</button>
@@ -167,102 +42,127 @@
 
 <div class="main">
   <div class="sidebar">
-    <h3>Catégories</h3>
-    <ul>
-      <li><button onclick="filterCategory('remix')">Remix</button></li>
-      <li><button onclick="filterCategory('ultras')">Ultras</button></li>
-      <li><button onclick="filterCategory('chaabi')">Chaâbi</button></li>
-    </ul>
+    <img id="cat-cover" class="cover-cat" src="" alt="Cover catégorie">
+    <div id="cat-name">Remix</div>
   </div>
 
   <div class="content">
     <div class="search-box">
-      <input type="text" id="search" placeholder="🔍 Rechercher une musique..." oninput="searchMusic(this.value)">
+      <input type="text" id="search" placeholder="Rechercher..." oninput="searchMusic(this.value)">
     </div>
-    <div id="music-list">
-      <!-- Les pistes seront insérées ici par JS -->
-    </div>
+    <div id="music-list"></div>
   </div>
 </div>
 
 <footer>
   <div class="now-playing">
-    <strong id="now-title">Aucune musique sélectionnée</strong><br>
-    <span id="now-desc">Sélectionnez une piste à droite</span>
+    <strong id="now-title">Aucune piste</strong><br>
+    <span id="now-desc">Sélectionnez une musique</span>
   </div>
   <audio id="global-player" controls></audio>
+  <a id="btn-download" class="btn-download" href="#" download>Télécharger</a>
 </footer>
+
+<canvas id="visualizer"></canvas>
 
 <script>
   const tracks = [
-    {
-      category: 'remix',
-      title: 'Pal Pal Mashup – Afusic',
-      desc: 'Un remix moderne combinant classiques Bollywood et trap asiatique.',
-      src: 'https://yourdomain.com/music/PalPalMashup.mp3',
-      cover: 'https://i1.sndcdn.com/artworks-000208777820-kgtgrf-t500x500.jpg'
-    },
-    {
-      category: 'ultras',
-      title: 'La Banda Loca – Ultras Fanatic Reds',
-      desc: 'Chant de stade énergique des fans algériens',
-      src: 'https://yourdomain.com/music/UltrasFanatic.mp3',
-      cover: 'https://i1.sndcdn.com/artworks-000137166221-uvuqrr-t500x500.jpg'
-    },
-    {
-      category: 'chaabi',
-      title: 'Chaâbi Traditionnel – AAZ',
-      desc: 'Un air traditionnel du patrimoine populaire algérien',
-      src: 'https://yourdomain.com/music/ChaabiTraditionnel.mp3',
-      cover: 'https://cdn-icons-png.flaticon.com/512/727/727245.png'
-    }
+    {category:'remix',title:'Pal Pal Mashup – Afusic',src:'https://yourdomain.com/music/PalPal.mp3',cover:'https://i1.sndcdn.com/artworks-000208777820-kgtgrf-t500x500.jpg'},
+    {category:'ultras',title:'La Banda Loca – Ultras Reds',src:'https://yourdomain.com/music/Ultras.mp3',cover:'https://i1.sndcdn.com/artworks-000137166221-uvuqrr-t500x500.jpg'},
+    {category:'chaabi',title:'Chaâbi Traditionnel – AAZ',src:'https://yourdomain.com/music/Chaabi.mp3',cover:'https://cdn-icons-png.flaticon.com/512/727/727245.png'}
   ];
+  const coversCat = {
+    remix:'https://cdn-icons-png.flaticon.com/512/467/467563.jpg',
+    ultras:'https://cdn-icons-png.flaticon.com/512/252/252004.png',
+    chaabi:'https://cdn-icons-png.flaticon.com/512/369/369359.png'
+  };
 
   const musicList = document.getElementById('music-list');
   const globalPlayer = document.getElementById('global-player');
   const nowTitle = document.getElementById('now-title');
   const nowDesc = document.getElementById('now-desc');
+  const btnDownload = document.getElementById('btn-download');
+  const catCover = document.getElementById('cat-cover');
+  let audioCtx, analyser, dataArray, srcNode, animId;
 
-  function renderTracks(category) {
-    musicList.innerHTML = '';
-    const filtered = tracks.filter(t => t.category === category);
-    filtered.forEach(t => {
-      const el = document.createElement('div');
-      el.className = 'track';
-      el.innerHTML = `
-        <img class="cover" src="${t.cover}" alt="cover">
-        <div class="info">
-          <div class="title">${t.title}</div>
-          <div class="desc">${t.desc}</div>
-        </div>
-      `;
-      el.onclick = () => {
-        globalPlayer.src = t.src;
-        globalPlayer.play();
-        nowTitle.textContent = t.title;
-        nowDesc.textContent = t.desc;
-      };
-      musicList.appendChild(el);
-    });
-  }
-
-  function filterCategory(cat) {
-    document.querySelectorAll('.filter-button').forEach(b => b.classList.remove('active'));
-    const btn = [...document.querySelectorAll('.filter-button')].find(b => b.textContent.toLowerCase().includes(cat));
-    if (btn) btn.classList.add('active');
+  function filterCategory(cat){
+    document.querySelectorAll('.filter-button').forEach(b=>b.classList.toggle('active', b.textContent.toLowerCase().includes(cat)));
+    catCover.src = coversCat[cat]||'';
+    document.getElementById('cat-name').textContent = cat.charAt(0).toUpperCase()+cat.slice(1);
     renderTracks(cat);
   }
 
-  function searchMusic(query) {
-    const items = document.querySelectorAll('.track');
-    items.forEach(item => {
-      const title = item.querySelector('.title').textContent.toLowerCase();
-      item.style.display = title.includes(query.toLowerCase()) ? 'flex' : 'none';
+  function renderTracks(cat){
+    musicList.innerHTML = '';
+    tracks.filter(t=>t.category===cat).forEach(t=>{
+      const el = document.createElement('div');
+      el.className='track';
+      el.innerHTML = `<img class="cover" src="${t.cover}" alt=""><div class="info"><div class="title">${t.title}</div><div class="desc">Chargement...</div></div>`;
+      el.onclick = ()=>playTrack(t);
+      musicList.appendChild(el);
+      fetchDesc(t.title,desc=> el.querySelector('.desc').textContent = desc);
     });
   }
 
-  // Charger par défaut la catégorie remix
-  window.onload = () => filterCategory('remix');
+  function playTrack(t){
+    globalPlayer.src = t.src;
+    globalPlayer.play();
+    nowTitle.textContent = t.title;
+    fetchDesc(t.title,desc=> nowDesc.textContent = desc);
+    btnDownload.href = t.src;
+    startVisualizer();
+  }
+
+  function searchMusic(q){
+    document.querySelectorAll('.track').forEach(el=>{
+      const title=el.querySelector('.title').textContent.toLowerCase();
+      el.style.display = title.includes(q.toLowerCase())?'flex':'none';
+    });
+  }
+
+  function fetchDesc(title,cb){
+    const apiKey='TA_CLE_LASTFM';
+    const [artist,track]=title.split(' – ');
+    fetch(`https://ws.audioscrobbler.com/2.0/?method=track.getInfo&api_key=${apiKey}&artist=${encodeURIComponent(artist)}&track=${encodeURIComponent(track)}&format=json`)
+      .then(r=>r.json()).then(d=>cb(d.track?.wiki?.summary?.replace(/<[^>]+>/g,'')||'Pas de description.'))
+      .catch(_=>cb('Description non disponible.'));
+  }
+
+  function startVisualizer(){
+    if(!audioCtx){
+      audioCtx=new (window.AudioContext||window.webkitAudioContext)();
+      analyser=audioCtx.createAnalyser();
+      srcNode=audioCtx.createMediaElementSource(globalPlayer);
+      srcNode.connect(analyser);
+      analyser.connect(audioCtx.destination);
+      analyser.fftSize=256;
+      const bufferLength=analyser.frequencyBinCount;
+      dataArray=new Uint8Array(bufferLength);
+    }
+    function draw(){
+      const canvas=document.getElementById('visualizer');
+      const ctx=canvas.getContext('2d');
+      canvas.width=canvas.clientWidth;
+      canvas.height=canvas.clientHeight;
+      requestAnimationFrame(draw);
+      analyser.getByteFrequencyData(dataArray);
+      ctx.fillStyle='#000'; ctx.fillRect(0,0,canvas.width,canvas.height);
+      const barWidth=(canvas.width/dataArray.length)*2.5;
+      let x=0;
+      dataArray.forEach(val=>{
+        const barHeight=val/2;
+        ctx.fillStyle=`rgb(${val+100},50,200)`;
+        ctx.fillRect(x,canvas.height-barHeight,barWidth,barHeight);
+        x+=barWidth+1;
+      });
+    }
+    if(!animId) draw();
+  }
+
+  // Auto-pause on new play
+  globalPlayer.addEventListener('play',()=> audioCtx && audioCtx.resume());
+
+  window.onload = ()=>filterCategory('remix');
 </script>
 
 </body>
