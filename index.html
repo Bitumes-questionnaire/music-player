@@ -1,38 +1,108 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <title>Lecteur Audio</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #f5f5f5;
-            padding: 20px;
-            text-align: center;
-        }
-        audio {
-            margin: 20px auto;
-            display: block;
-            width: 80%;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>Lecteur Audio Moderne</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Orbitron', sans-serif;
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      justify-content: center;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 30px;
+      text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff;
+    }
+
+    .player-container {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      width: 90%;
+      max-width: 600px;
+      padding: 40px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 20px;
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.3);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transform: perspective(1000px) rotateX(2deg);
+    }
+
+    audio {
+      width: 100%;
+      filter: drop-shadow(0 0 5px #00ffff);
+    }
+
+    audio::-webkit-media-controls-panel {
+      background-color: #111;
+      border-radius: 10px;
+    }
+
+    .neon-button {
+      margin-top: 20px;
+      padding: 12px 30px;
+      font-size: 1.2em;
+      color: #fff;
+      background: transparent;
+      border: 2px solid #00ffff;
+      border-radius: 10px;
+      text-transform: uppercase;
+      cursor: pointer;
+      box-shadow: 0 0 5px #00ffff, 0 0 10px #00ffff, 0 0 15px #00ffff;
+      transition: all 0.3s ease;
+    }
+
+    .neon-button:hover {
+      background: #00ffff;
+      color: #000;
+      box-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 30px #00ffff;
+      transform: scale(1.05);
+    }
+
+    @media (max-width: 600px) {
+      .player-container {
+        padding: 20px;
+      }
+
+      h1 {
+        font-size: 2em;
+      }
+    }
+  </style>
 </head>
 <body>
-    <h1>🎵 Mon Lecteur de Musique</h1>
 
-    <!-- Exemple avec une musique -->
+  <h1>🎶 Mon Lecteur Audio Stylé</h1>
+
+  <div class="player-container">
     <audio controls>
-        <source src="Ultras Fanatic Reds - La Banda Loca _ زيدي كاس(MP3_160K).mp3" type="audio/mpeg">
-        Ton navigateur ne supporte pas l'audio HTML5.
+      <source src="Ultras Fanatic Reds - La Banda Loca _ زيدي كاس(MP3_160K).mp3" type="audio/mpeg">
+      Ton navigateur ne supporte pas l'audio HTML5.
     </audio>
 
     <audio controls>
-        <source src="aaz.mp3" type="audio/mpeg">
-        Ton navigateur ne supporte pas l'audio HTML5.
+      <source src="aaz.mp3" type="audio/mpeg">
+      Ton navigateur ne supporte pas l'audio HTML5.
     </audio>
-        <audio controls>
-        <source src="Pal Pal Mashup _ Afusic x Talha Anjum Ft. Talwiinder _ Naresh Parmar(MP3_160K).mp3" type="audio/mpeg">
-        Ton navigateur ne supporte pas l'audio HTML5.
+
+    <audio controls>
+      <source src="Pal Pal Mashup _ Afusic x Talha Anjum Ft. Talwiinder _ Naresh Parmar(MP3_160K).mp3" type="audio/mpeg">
+      Ton navigateur ne supporte pas l'audio HTML5.
     </audio>
+
+    <button class="neon-button" onclick="alert('Bientôt plus de fonctionnalités !')">🎧 Plus de sons</button>
+  </div>
+
 </body>
 </html>
